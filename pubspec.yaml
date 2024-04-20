@@ -1,0 +1,57 @@
+name: pokemon
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  bloc: ^8.1.2
+  currency_picker: ^2.0.21
+  dio: ^5.4.0
+  flutter_bloc: ^8.1.3
+  flutter_bounceable: ^1.1.0
+  flutter_contacts: ^1.1.7+1
+  flutter_launcher_icons: ^0.13.1
+  flutter_snake_navigationbar: ^0.6.1
+  flutter_timezone: ^1.0.8
+  font_awesome_flutter: ^10.6.0
+  google_fonts: ^6.1.0
+  intl: ^0.19.0
+  loading_indicator: ^3.1.0
+  permission_handler: ^11.3.0
+  pin_code_fields: ^8.0.1
+  table_calendar: ^3.0.9
+  admob:
+    path: /users/thf/Apps_Flutter_Packages/admob
+  api:
+    path: /users/thf/Apps_Flutter_Packages/api
+  config:
+    path: /users/thf/Apps_Flutter_Packages/config
+  helpers:
+    path: /users/thf/Apps_Flutter_Packages/helpers
+  iap:
+    path: /users/thf/Apps_Flutter_Packages/iap
+  toast:
+    path: /users/thf/Apps_Flutter_Packages/toast
+  wiki:
+    path: /users/thf/Apps_Flutter_Packages/wiki
+  widgets:
+    path: /users/thf/Apps_Flutter_Packages/widgets
+  phone_input_formatter:
+    path: /users/thf/Apps_Flutter_Packages/phone_input_formatter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+
