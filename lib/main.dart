@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/cubits/home_cubit.dart';
+import 'package:pokemon/cubits/pokemon_cubit.dart';
 import 'package:pokemon/cubits/theme_cubit.dart';
 import 'package:pokemon/views/home_screen.dart';
 import 'exports.dart';
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
         BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
         BlocProvider<PokemonListCubit>(create: (context) => PokemonListCubit()),
+        BlocProvider<PokemonCubit>(create: (context) => PokemonCubit()),
       ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, modelTheme) {

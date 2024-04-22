@@ -57,7 +57,6 @@ class ApiRequests {
           break;
       }
 
-      inspect(resp.data);
       try {
         return ApiModelsResponse.fromJson({
           'server_status': true,

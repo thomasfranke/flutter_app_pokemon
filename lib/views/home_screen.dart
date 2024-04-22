@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pokemon/cubits/home_cubit.dart';
 import 'package:pokemon/helpers/dio.dart';
+import 'package:pokemon/helpers/endpoint_model.dart';
 import 'package:pokemon/helpers/methods_constant.dart';
 import 'package:pokemon/helpers/response_model.dart';
-import 'package:pokemon/models/pokemon_abilities_model.dart';
+import 'package:pokemon/models/pokemon_list_item_model.dart';
+import 'package:pokemon/models/pokemon_list_model.dart';
+import 'package:pokemon/views/reader_screen.dart';
 import 'package:pokemon/widgets/alert_widget.dart';
+import 'package:pokemon/widgets/avatar_widget.dart';
 import 'package:pokemon/widgets/button_widget.dart';
 import 'package:pokemon/widgets/loading_indicator_widget.dart';
 import 'package:pokemon/widgets/scaffold_widget.dart';
@@ -21,7 +24,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late Future<ApiModelsResponse> _apiData;
   late FToast fToast;
-
   @override
   void initState() {
     super.initState();
@@ -30,15 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
     _apiData = apiGet();
   }
 
-  Future<ApiModelsResponse> apiGet() {
-    return ApiRequests().send(endpoint: Endpoints.home, method: ApiMethods.get).then((value) {
+  Future<ApiModelsResponse> apiGet({url = "https://pokeapi.co/api/v2/pokemon/"}) {
+    log("GET: $url");
+    return ApiRequests().send(endpoint: ApiEndpointModel(get: url), method: ApiMethods.get).then((value) {
       return value;
     }).then((value) {
       if (value.data.isNotEmpty) {
+        PokemonList pokemon = PokemonList.fromJson(value.data);
+        BlocProvider.of<HomeCubit>(context).update(pokemon);
+
         List<dynamic> results = value.data['results'];
-        List<dynamic> appointments = results.map((c) => PokemonAbilititesList.fromJson(c)).toList();
-        inspect(appointments);
-        BlocProvider.of<PokemonListCubit>(context).update(appointments);
+        List<dynamic> pokemonList = results.map((c) => PokemonListItem.fromJson(c)).toList();
+        BlocProvider.of<PokemonListCubit>(context).update(pokemonList);
       }
       fToast.showToast(
         type: FToastType.all,
@@ -52,58 +57,53 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  bool _isLoading = false;
-
   Widget _body() {
-    return WidgetsScaffold(
-      title: "PokeGuide",
-      hasDrawer: true,
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          final state = BlocProvider.of<PokemonListCubit>(context).state;
-          if (index < state.length) {
-            final pokemon = state[index];
-            return ListTile(
-              title: Text(
-                pokemon.name,
-                style: const TextStyle(color: Colors.amber),
-              ),
-              subtitle: Text(
-                pokemon.url,
-                style: const TextStyle(color: Colors.amber),
-              ),
-            );
-          } else {
-            if (_isLoading) {
-              // Exibe o indicador de carregamento
-              return const Center(
-                child: CircularProgressIndicator(),
+    return BlocBuilder<HomeCubit, PokemonList>(builder: (context, pokemonHome) {
+      return BlocBuilder<PokemonListCubit, List<dynamic>>(builder: (context, pokemonList) {
+        return ListView.builder(
+          itemCount: pokemonList.length + 1,
+          itemBuilder: (context, index) {
+            if (index < pokemonList.length) {
+              final pokemon = pokemonList[index];
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  leading: CircleAvatarWithLoadingIndicator(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
+                  title: Text(pokemon.name, style: const TextStyle(color: Colors.amber)),
+                  subtitle: Text(pokemon.url, style: const TextStyle(color: Colors.amber)),
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(url: pokemon.url))),
+                ),
               );
             } else {
-              // Não exibe nada quando não estiver carregando
-              return const SizedBox.shrink();
+              apiGet(url: pokemonHome.next);
+              return const Center(child: CircularProgressIndicator());
             }
-          }
-        },
-      ),
-    );
+          },
+        );
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return WidgetsFutureBuilder(
-      future: _apiData,
-      alert: (message) => WidgetsAlert(message: message),
-      button: WidgetsButton(
-        onTap: () => setState(() {
-          _apiData = apiGet();
-        }),
-        text: "Try Again",
+    return WidgetsScaffold(
+      title: "PokeGuide",
+      hasDrawer: true,
+      body: WidgetsFutureBuilder(
+        future: _apiData,
+        alert: (message) => WidgetsAlert(message: message),
+        button: WidgetsButton(
+          onTap: () => setState(() {
+            _apiData = apiGet();
+          }),
+          text: "Try Again",
+        ),
+        loadingIndicator: const WidgetsLoadingIndicator(),
+        builder: (BuildContext context, snapshot) {
+          return _body();
+        },
       ),
-      loadingIndicator: const WidgetsLoadingIndicator(),
-      builder: (BuildContext context, snapshot) {
-        return _body();
-      },
     );
   }
 }

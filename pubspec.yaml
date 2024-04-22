@@ -32,6 +32,7 @@ dependencies:
     path: /users/thf/Apps_Flutter_Packages/widgets
   phone_input_formatter:
     path: /users/thf/Apps_Flutter_Packages/phone_input_formatter
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:
