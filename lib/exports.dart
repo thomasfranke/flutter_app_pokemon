@@ -14,7 +14,6 @@ export 'constants/colors_constant.dart';
 export 'constants/design_constant.dart';
 export 'constants/icons_constant.dart';
 export 'constants/images_constant.dart';
-export 'constants/lists_constant.dart';
 
 // Cubits:
 

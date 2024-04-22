@@ -11,12 +11,9 @@ class ConstantsIcons {
   static const Icon time = Icon(Icons.access_time);
 
   static const Icon barAppointments = Icon(Icons.calendar_month);
-  // static const Icon barAppointments = Icon(FontAwesomeIcons.calendarDays);
   static const Icon barClients = Icon(Icons.group_outlined);
-  // static const Icon barClients = Icon(FontAwesomeIcons.userGroup);
   static const Icon barHistory = Icon(Icons.history);
   static const Icon barServices = Icon(Icons.work_outline);
-  // static const Icon barServices = Icon(FontAwesomeIcons.briefcase);
   static const Icon barSettings = Icon(Icons.settings);
   static const Icon barUpcoming = Icon(Icons.update);
 }
