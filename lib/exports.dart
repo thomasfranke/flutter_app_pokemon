@@ -20,14 +20,8 @@ export 'constants/images_constant.dart';
 // Models:
 
 // Packages:
-export 'package:admob/exports.dart';
-export 'package:api/exports.dart';
-export 'package:config/exports.dart';
-export 'package:helpers/exports.dart';
-export 'package:iap/exports.dart';
 export 'package:phone_input_formatter/exports.dart';
 export 'package:toast/exports.dart';
-export 'package:wiki/exports.dart';
 export 'package:widgets/exports.dart';
 
 export 'package:flutter/foundation.dart';

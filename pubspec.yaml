@@ -26,20 +26,8 @@ dependencies:
   permission_handler: ^11.3.0
   pin_code_fields: ^8.0.1
   table_calendar: ^3.0.9
-  admob:
-    path: /users/thf/Apps_Flutter_Packages/admob
-  api:
-    path: /users/thf/Apps_Flutter_Packages/api
-  config:
-    path: /users/thf/Apps_Flutter_Packages/config
-  helpers:
-    path: /users/thf/Apps_Flutter_Packages/helpers
-  iap:
-    path: /users/thf/Apps_Flutter_Packages/iap
   toast:
     path: /users/thf/Apps_Flutter_Packages/toast
-  wiki:
-    path: /users/thf/Apps_Flutter_Packages/wiki
   widgets:
     path: /users/thf/Apps_Flutter_Packages/widgets
   phone_input_formatter:
