@@ -17,29 +17,29 @@ class _PokemonStatsTabState extends State<PokemonStatsTab> {
       child: Center(
         child: Column(
           children: [
-            WidgetsText(
+            TextWidget(
               text: "Base Happiness: ${widget.viewModel.getBaseHappiness()}",
             ),
-            WidgetsText(
+            TextWidget(
               text: "Capture Rate: ${widget.viewModel.getCaptureRate()}",
             ),
-            WidgetsText(
+            TextWidget(
               text: "Color: ${widget.viewModel.getColor()}",
             ),
-            WidgetsText(
+            TextWidget(
               text: "Growth Rate: ${widget.viewModel.getGrowthRate()}",
             ),
-            WidgetsText(
+            TextWidget(
               text: "Habitat: ${widget.viewModel.getHabitat()}",
             ),
-            WidgetsText(
+            TextWidget(
               text: "Hatch Counter: ${widget.viewModel.getHatchCounter()}",
             ),
-            const WidgetsTitle(
+            const TitleWidget(
               text: "Egg Groups",
             ),
             ...widget.viewModel.getEggGroups().map((e) {
-              return WidgetsText(
+              return TextWidget(
                 text: e.name,
                 padding: const EdgeInsets.only(top: 8.0),
               );

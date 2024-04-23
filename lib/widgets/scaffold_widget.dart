@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '/exports.dart';
 
-class WidgetsScaffold extends StatelessWidget {
+class ScaffoldWidget extends StatelessWidget {
   final String title;
   final IconButton action;
   final Widget body;
@@ -11,7 +11,7 @@ class WidgetsScaffold extends StatelessWidget {
   final bool hasTitleImage;
   final Widget? bottomNavigationBar;
   final Color backgroundColor;
-  const WidgetsScaffold({
+  const ScaffoldWidget({
     super.key,
     required this.body,
     this.title = "",
@@ -30,7 +30,7 @@ class WidgetsScaffold extends StatelessWidget {
         ? AppBar(
             iconTheme: const IconThemeData(color: ConstantsColors.primary),
             backgroundColor: ConstantsColors.background,
-            title: hasTitleImage ? Center(child: Image.asset(title, fit: BoxFit.fitWidth, height: 50)) : WidgetsTitle(text: title),
+            title: hasTitleImage ? Center(child: Image.asset(title, fit: BoxFit.fitWidth, height: 50)) : TitleWidget(text: title),
             actions: [action],
           )
         : null;

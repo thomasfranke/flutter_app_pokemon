@@ -62,20 +62,20 @@ class _PokemonScreenState extends State<PokemonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetsScaffold(
+    return ScaffoldWidget(
       title: widget.pokemonName.toUpperCase()[0] + widget.pokemonName.substring(1),
       hasNavBar: true,
       bottomNavigationBar: _navBar(),
       body: WidgetsFutureBuilder(
         future: _apiData,
-        alert: (message) => WidgetsAlert(message: message),
-        button: WidgetsButton(
+        alert: (message) => AlertWidget(message: message),
+        button: ButtonWidget(
           onTap: () => setState(() {
             _apiData = _apiGet.get(pokemonName: widget.pokemonName);
           }),
           text: "Try Again",
         ),
-        loadingIndicator: const WidgetsLoadingIndicator(),
+        loadingIndicator: const LoadingIndicatorWidget(),
         builder: (BuildContext context, snapshot) {
           return _pickScreen();
         },

@@ -13,8 +13,8 @@ class WidgetsFutureBuilder extends StatelessWidget {
     required this.alert,
     required this.button,
     super.key,
-    this.loadingIndicator = const WidgetsLoadingIndicator(),
-    this.alertBox = const WidgetsAlert(message: ""),
+    this.loadingIndicator = const LoadingIndicatorWidget(),
+    this.alertBox = const AlertWidget(message: ""),
     required this.future,
     required this.builder,
   });

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import '/exports.dart';
 
-enum WidgetsAlertColor { green, yellow, red }
+enum AlertWidgetColor { green, yellow, red }
 
-class WidgetsAlert extends StatelessWidget {
-  final WidgetsAlertColor color;
+class AlertWidget extends StatelessWidget {
+  final AlertWidgetColor color;
   final String message;
   final bool darkTheme;
 
-  const WidgetsAlert({
+  const AlertWidget({
     super.key,
-    this.color = WidgetsAlertColor.green,
+    this.color = AlertWidgetColor.green,
     this.darkTheme = false,
     this.message = "",
   });
@@ -21,11 +21,11 @@ class WidgetsAlert extends StatelessWidget {
     late Color colorBack;
     late Color colorText;
 
-    if (color == WidgetsAlertColor.green) {
+    if (color == AlertWidgetColor.green) {
       colorBorder = (darkTheme) ? Colors.green.shade700 : Colors.green.shade300;
       colorBack = (darkTheme) ? Colors.green.shade700.withAlpha(70) : Colors.green.shade300.withAlpha(70);
       colorText = (darkTheme) ? Colors.white.withAlpha(1000) : Colors.black54;
-    } else if (color == WidgetsAlertColor.yellow) {
+    } else if (color == AlertWidgetColor.yellow) {
       colorBorder = (darkTheme) ? Colors.yellow.shade800 : Colors.yellow.shade300;
       colorBack = (darkTheme) ? Colors.yellow.shade600.withAlpha(70) : Colors.yellow.shade300.withAlpha(70);
       colorText = (darkTheme) ? Colors.white.withAlpha(1000) : Colors.black54;

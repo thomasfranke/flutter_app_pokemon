@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class WidgetsTitle extends StatelessWidget {
+class TitleWidget extends StatelessWidget {
   final String text;
   final bool center;
-  const WidgetsTitle({
+  const TitleWidget({
     super.key,
     required this.text,
     this.center = false,

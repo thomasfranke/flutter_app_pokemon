@@ -21,7 +21,8 @@ Graficamente, adicionei apenas algumas pequenas features que demonstram meu conh
 
 Algumas Widgets/Features customizadas para padronizar o sistema:
 
-- FutureBuilder e requisições à API: utilizam classes customizadas que criei para padronizar as requisições e seus erros.
+- FutureBuilder
+- API
 - Scaffold
 
 ## BLoC vs MobX

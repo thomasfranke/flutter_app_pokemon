@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class WidgetsText extends StatelessWidget {
+class TextWidget extends StatelessWidget {
   final String text;
   final EdgeInsets padding;
   final TextAlign textAlign;
-  const WidgetsText({
+  const TextWidget({
     super.key,
     required this.text,
     this.textAlign = TextAlign.center,

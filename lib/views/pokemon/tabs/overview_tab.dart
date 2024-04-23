@@ -33,7 +33,7 @@ class _PokemonOverviewTabState extends State<PokemonOverviewTab> {
               ),
             ),
           ),
-          WidgetsText(text: widget.viewModel.getFlavorTextEntries()[0].flavorText)
+          TextWidget(text: widget.viewModel.getFlavorTextEntries()[0].flavorText)
         ],
       ),
     );

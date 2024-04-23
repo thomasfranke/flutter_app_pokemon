@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               const SizedBox(width: 10),
-              CircleAvatarWithLoadingIndicator(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
+              AvatarWidget(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
               const SizedBox(width: 30),
               Text(pokemon.name.toUpperCase()[0] + pokemon.name.substring(1),
                   style: const TextStyle(
@@ -80,20 +80,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetsScaffold(
+    return ScaffoldWidget(
       title: "assets/logo.png",
       hasTitleImage: true,
       hasDrawer: true,
       body: WidgetsFutureBuilder(
         future: _apiData,
-        alert: (message) => WidgetsAlert(message: message),
-        button: WidgetsButton(
+        alert: (message) => AlertWidget(message: message),
+        button: ButtonWidget(
           onTap: () => setState(() {
             _apiData = _apiGet.get();
           }),
           text: "Try Again",
         ),
-        loadingIndicator: const WidgetsLoadingIndicator(),
+        loadingIndicator: const LoadingIndicatorWidget(),
         builder: (BuildContext context, snapshot) {
           return _body();
         },

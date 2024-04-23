@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import '/exports.dart';
 
-class WidgetsButton extends StatelessWidget {
+class ButtonWidget extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   final bool altButton;
 
-  const WidgetsButton({
+  const ButtonWidget({
     super.key,
     this.altButton = false,
     required this.onTap,

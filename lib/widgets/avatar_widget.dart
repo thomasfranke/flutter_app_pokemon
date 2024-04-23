@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class CircleAvatarWithLoadingIndicator extends StatelessWidget {
+class AvatarWidget extends StatelessWidget {
   final String imageUrl;
 
-  const CircleAvatarWithLoadingIndicator({super.key, required this.imageUrl});
+  const AvatarWidget({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
