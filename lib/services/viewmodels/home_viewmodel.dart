@@ -1,4 +1,4 @@
-import 'package:pokemon/cubits/pokemon_home_cubit.dart';
+import '/exports.dart';
 
 class PokemonHomeViewModel {
   late final PokemonHomeCubit _pokemonHomeCubit;

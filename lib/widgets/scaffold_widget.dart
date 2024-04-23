@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/widgets/drawer_widget.dart';
-import 'package:pokemon/widgets/styles_title_widget.dart';
 import '/exports.dart';
 
 class WidgetsScaffold extends StatelessWidget {

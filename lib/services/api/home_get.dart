@@ -1,26 +1,19 @@
-import 'package:pokemon/cubits/pokemon_home_cubit.dart';
-import 'package:pokemon/helpers/dio.dart';
-import 'package:pokemon/helpers/endpoint_model.dart';
-import 'package:pokemon/helpers/methods_constant.dart';
-import 'package:pokemon/helpers/response_model.dart';
-import 'package:pokemon/models/pokemon_home_model.dart';
-
 import '/exports.dart';
 
-class ServiceApiGet {
+class PokemonHomeApiGet {
   late final PokemonHomeCubit _pokemonHomeCubit;
   late final FToast _fToast;
 
-  ServiceApiGet({required PokemonHomeCubit pokemonHomeCubit, required FToast fToast})
+  PokemonHomeApiGet({required PokemonHomeCubit pokemonHomeCubit, required FToast fToast})
       : _pokemonHomeCubit = pokemonHomeCubit,
         _fToast = fToast;
 
   FToast get fToast => _fToast;
 
-  Future<ApiModelsResponse> get() async {
+  Future<ApiModelsResponse> get({url = "https://pokeapi.co/api/v2/pokemon/"}) async {
     try {
       final value = await ApiRequests().send(
-        endpoint: ApiEndpointModel(get: ""),
+        endpoint: ApiEndpointModel(get: url),
         method: ApiMethods.get,
       );
 

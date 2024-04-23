@@ -1,17 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/cubits/pokemon_home_cubit.dart';
-// import 'package:pokemon/cubits/pokemon_list_cubit.dart';
-import 'package:pokemon/helpers/dio.dart';
-import 'package:pokemon/helpers/endpoint_model.dart';
-import 'package:pokemon/helpers/methods_constant.dart';
-import 'package:pokemon/helpers/response_model.dart';
-import 'package:pokemon/models/pokemon_home_model.dart';
-import 'package:pokemon/views/reader_screen.dart';
-import 'package:pokemon/widgets/alert_widget.dart';
-import 'package:pokemon/widgets/avatar_widget.dart';
-import 'package:pokemon/widgets/button_widget.dart';
-import 'package:pokemon/widgets/loading_indicator_widget.dart';
-import 'package:pokemon/widgets/scaffold_widget.dart';
 import '/exports.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,35 +9,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late final PokemonHomeViewModel _viewModel;
+  late final PokemonHomeApiGet _apiGet;
   late Future<ApiModelsResponse> _apiData;
-  late FToast fToast;
+
   @override
   void initState() {
     super.initState();
-    fToast = FToast();
-    WidgetsBinding.instance.addPostFrameCallback((_) => fToast.init(context));
-    _apiData = apiGet();
-  }
-
-  Future<ApiModelsResponse> apiGet({url = "https://pokeapi.co/api/v2/pokemon/"}) {
-    log("GET: $url");
-    return ApiRequests().send(endpoint: ApiEndpointModel(get: url), method: ApiMethods.get).then((value) {
-      return value;
-    }).then((value) {
-      if (value.data.isNotEmpty) {
-        PokemonHomeModel pokemon = PokemonHomeModel.fromJson(value.data);
-        BlocProvider.of<PokemonHomeCubit>(context).update(pokemon);
-      }
-      fToast.showToast(
-        type: FToastType.all,
-        serverStatus: value.serverStatus,
-        responseStatus: value.responseStatus,
-        message: value.message,
-        position: FToastPosition.snackbarTop,
-      );
-
-      return value;
-    });
+    _viewModel = PokemonHomeViewModel(pokemonHomeCubit: BlocProvider.of<PokemonHomeCubit>(context));
+    _apiGet = PokemonHomeApiGet(pokemonHomeCubit: BlocProvider.of<PokemonHomeCubit>(context), fToast: FToast());
+    _apiData = _apiGet.get();
   }
 
   Widget _body() {
@@ -67,11 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 leading: CircleAvatarWithLoadingIndicator(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
                 title: Text(pokemon.name, style: const TextStyle(color: Colors.amber)),
                 subtitle: Text(pokemon.url, style: const TextStyle(color: Colors.amber)),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(name: pokemon.name))),
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(pokemonName: pokemon.name))),
               ),
             );
           } else {
-            apiGet(url: pokemonHome.next);
+            _apiData = _apiGet.get();
             return const Center(child: CircularProgressIndicator());
           }
         },
@@ -89,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         alert: (message) => WidgetsAlert(message: message),
         button: WidgetsButton(
           onTap: () => setState(() {
-            _apiData = apiGet();
+            _apiData = _apiGet.get();
           }),
           text: "Try Again",
         ),

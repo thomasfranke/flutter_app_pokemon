@@ -1,9 +1,5 @@
-import 'package:pokemon/exports.dart';
-import 'package:pokemon/helpers/endpoint_model.dart';
-// import '/exports.dart';
 import 'package:dio/dio.dart';
-import 'package:pokemon/helpers/methods_constant.dart';
-import 'package:pokemon/helpers/response_model.dart';
+import '/exports.dart';
 
 class ApiRequests {
   Future<ApiModelsResponse> send({

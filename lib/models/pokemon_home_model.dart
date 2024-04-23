@@ -1,10 +1,10 @@
-import 'package:pokemon/models/pokemon_list_item_model.dart';
+import '/exports.dart';
 
 class PokemonHomeModel {
   int count;
   String next;
   String previous;
-  List<PokemonListItem> results;
+  List<PokemonHomeItem> results;
 
   PokemonHomeModel({
     required this.count,
@@ -16,7 +16,7 @@ class PokemonHomeModel {
   factory PokemonHomeModel.fromJson(Map<String, dynamic> json) {
     var pokemonList = json['results'] as List;
     return PokemonHomeModel(
-      results: pokemonList.map((c) => PokemonListItem.fromJson(c)).toList(),
+      results: pokemonList.map((c) => PokemonHomeItem.fromJson(c)).toList(),
       count: json["count"],
       next: json["next"].toString(),
       previous: json["previous"].toString(),
@@ -27,7 +27,7 @@ class PokemonHomeModel {
     int? count,
     String? next,
     String? previous,
-    List<PokemonListItem>? results,
+    List<PokemonHomeItem>? results,
   }) {
     return PokemonHomeModel(
       count: count ?? this.count,

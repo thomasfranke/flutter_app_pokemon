@@ -1,4 +1,3 @@
-import 'package:pokemon/models/pokemon_home_model.dart';
 import '/exports.dart';
 
 class PokemonHomeCubit extends Cubit<PokemonHomeModel> {

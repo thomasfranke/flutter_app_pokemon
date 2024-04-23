@@ -1,17 +1,10 @@
-import 'package:pokemon/cubits/pokemon_cubit.dart';
-import 'package:pokemon/helpers/dio.dart';
-import 'package:pokemon/helpers/endpoint_model.dart';
-import 'package:pokemon/helpers/methods_constant.dart';
-import 'package:pokemon/helpers/response_model.dart';
-import 'package:pokemon/models/pokemon_model.dart';
-
 import '/exports.dart';
 
-class ServiceApiGet {
+class PokemonApiGet {
   late final PokemonCubit _pokemonCubit;
   late final FToast _fToast;
 
-  ServiceApiGet({required PokemonCubit pokemonCubit, required FToast fToast})
+  PokemonApiGet({required PokemonCubit pokemonCubit, required FToast fToast})
       : _pokemonCubit = pokemonCubit,
         _fToast = fToast;
 

@@ -1,4 +1,4 @@
-import 'package:pokemon/helpers/endpoint_model.dart';
+import '/exports.dart';
 
 class Endpoints {
   static ApiEndpointModel home = ApiEndpointModel(

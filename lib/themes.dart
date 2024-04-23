@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pokemon/constants/colors_constant.dart';
+import '/exports.dart';
 
 final ThemeData lightTheme = ThemeData(
   textTheme: TextTheme(
