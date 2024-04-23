@@ -1,26 +1,26 @@
-import 'package:pokemon/cubits/pokemon_home_cubit.dart';
+import 'package:pokemon/cubits/pokemon_cubit.dart';
 import 'package:pokemon/helpers/dio.dart';
 import 'package:pokemon/helpers/endpoint_model.dart';
 import 'package:pokemon/helpers/methods_constant.dart';
 import 'package:pokemon/helpers/response_model.dart';
-import 'package:pokemon/models/pokemon_home_model.dart';
+import 'package:pokemon/models/pokemon_model.dart';
 
 import '/exports.dart';
 
 class ServiceApiGet {
-  late final PokemonHomeCubit _pokemonHomeCubit;
+  late final PokemonCubit _pokemonCubit;
   late final FToast _fToast;
 
-  ServiceApiGet({required PokemonHomeCubit pokemonHomeCubit, required FToast fToast})
-      : _pokemonHomeCubit = pokemonHomeCubit,
+  ServiceApiGet({required PokemonCubit pokemonCubit, required FToast fToast})
+      : _pokemonCubit = pokemonCubit,
         _fToast = fToast;
 
   FToast get fToast => _fToast;
 
-  Future<ApiModelsResponse> get() async {
+  Future<ApiModelsResponse> get({required String pokemonName}) async {
     try {
       final value = await ApiRequests().send(
-        endpoint: ApiEndpointModel(get: ""),
+        endpoint: ApiEndpointModel(get: "https://pokeapi.co/api/v2/pokemon-species/$pokemonName"),
         method: ApiMethods.get,
       );
 
@@ -33,8 +33,8 @@ class ServiceApiGet {
       );
 
       if (value.responseStatus) {
-        PokemonHomeModel modelPokemonHome = PokemonHomeModel.fromJson(value.data);
-        _pokemonHomeCubit.update(modelPokemonHome);
+        final modelPokemon = PokemonModel.fromJson(value.data);
+        _pokemonCubit.update(modelPokemon);
       }
       return value;
     } catch (e) {

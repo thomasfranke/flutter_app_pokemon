@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/cubits/pokemon_home_cubit.dart';
-import 'package:pokemon/cubits/pokemon_list_cubit.dart';
+// import 'package:pokemon/cubits/pokemon_list_cubit.dart';
 import 'package:pokemon/helpers/dio.dart';
 import 'package:pokemon/helpers/endpoint_model.dart';
 import 'package:pokemon/helpers/methods_constant.dart';
 import 'package:pokemon/helpers/response_model.dart';
-import 'package:pokemon/models/pokemon_list_item_model.dart';
-import 'package:pokemon/models/pokemon_list_model.dart';
+import 'package:pokemon/models/pokemon_home_model.dart';
 import 'package:pokemon/views/reader_screen.dart';
 import 'package:pokemon/widgets/alert_widget.dart';
 import 'package:pokemon/widgets/avatar_widget.dart';
@@ -39,12 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
       return value;
     }).then((value) {
       if (value.data.isNotEmpty) {
-        PokemonList pokemon = PokemonList.fromJson(value.data);
+        PokemonHomeModel pokemon = PokemonHomeModel.fromJson(value.data);
         BlocProvider.of<PokemonHomeCubit>(context).update(pokemon);
-
-        List<dynamic> results = value.data['results'];
-        List<dynamic> pokemonList = results.map((c) => PokemonListItem.fromJson(c)).toList();
-        BlocProvider.of<PokemonListCubit>(context).update(pokemonList);
       }
       fToast.showToast(
         type: FToastType.all,
@@ -59,30 +54,28 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _body() {
-    return BlocBuilder<PokemonHomeCubit, PokemonList>(builder: (context, pokemonHome) {
-      return BlocBuilder<PokemonListCubit, List<dynamic>>(builder: (context, pokemonList) {
-        return ListView.builder(
-          itemCount: pokemonList.length + 1,
-          itemBuilder: (context, index) {
-            if (index < pokemonList.length) {
-              final pokemon = pokemonList[index];
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  leading: CircleAvatarWithLoadingIndicator(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
-                  title: Text(pokemon.name, style: const TextStyle(color: Colors.amber)),
-                  subtitle: Text(pokemon.url, style: const TextStyle(color: Colors.amber)),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(name: pokemon.name))),
-                ),
-              );
-            } else {
-              apiGet(url: pokemonHome.next);
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        );
-      });
+    return BlocBuilder<PokemonHomeCubit, PokemonHomeModel>(builder: (context, pokemonHome) {
+      return ListView.builder(
+        itemCount: pokemonHome.results.length + 1,
+        itemBuilder: (context, index) {
+          if (index < pokemonHome.results.length) {
+            final pokemon = pokemonHome.results[index];
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                leading: CircleAvatarWithLoadingIndicator(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
+                title: Text(pokemon.name, style: const TextStyle(color: Colors.amber)),
+                subtitle: Text(pokemon.url, style: const TextStyle(color: Colors.amber)),
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(name: pokemon.name))),
+              ),
+            );
+          } else {
+            apiGet(url: pokemonHome.next);
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      );
     });
   }
 

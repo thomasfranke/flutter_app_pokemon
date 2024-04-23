@@ -1,8 +1,15 @@
-import 'package:pokemon/models/pokemon_list_model.dart';
-
+import 'package:pokemon/models/pokemon_home_model.dart';
 import '/exports.dart';
 
-class PokemonHomeCubit extends Cubit<PokemonList> {
-  PokemonHomeCubit() : super(PokemonList(count: 0, next: "", previous: ""));
-  void update(PokemonList newList) => emit(newList);
+class PokemonHomeCubit extends Cubit<PokemonHomeModel> {
+  PokemonHomeCubit() : super(PokemonHomeModel(count: 0, next: "", previous: "", results: []));
+
+  void update(PokemonHomeModel newList) {
+    emit(state.copyWith(
+      count: newList.count,
+      next: newList.next,
+      previous: newList.previous,
+      results: [...state.results, ...newList.results],
+    ));
+  }
 }
