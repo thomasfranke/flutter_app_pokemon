@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:pokemon/widgets/future_builder_widget.dart';
 import '/exports.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,24 +24,34 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _body() {
-    return ListView.builder(
-      itemCount: _viewModel.getResults().length + 1,
-      itemBuilder: (context, index) {
-        log('Size: ${_viewModel.getResults().length}');
-        if (index < _viewModel.getResults().length) {
-          final PokemonHomeItem pokemon = _viewModel.getResults()[index];
-          return _listTile(pokemon: pokemon, index: index);
-        } else {
-          _apiData = _apiGet.get(url: _viewModel.getNext());
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
-    );
+    return BlocBuilder<PokemonHomeCubit, PokemonHomeModel>(builder: (context, pokemonHome) {
+      return ListView.builder(
+        itemCount: pokemonHome.results.length + 1,
+        itemBuilder: (context, index) {
+          log('Size: ${pokemonHome.results.length}');
+          if (index < pokemonHome.results.length) {
+            final PokemonHomeItem pokemon = _viewModel.getResults()[index];
+            return _listTile(pokemon: pokemon, index: index);
+          } else {
+            _apiData = _apiGet.get(url: pokemonHome.next);
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      );
+    });
   }
 
   Widget _listTile({required PokemonHomeItem pokemon, required int index}) {
     return Bounceable(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(pokemonName: pokemon.name))),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PokemonScreen(
+            pokemonName: pokemon.name,
+            imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png",
+          ),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

@@ -18,7 +18,7 @@ class PokemonApiGet {
       );
 
       _fToast.showToast(
-        type: FToastType.warning,
+        type: FToastType.all,
         serverStatus: value.serverStatus,
         responseStatus: value.responseStatus,
         message: value.message,

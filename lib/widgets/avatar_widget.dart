@@ -8,21 +8,24 @@ class CircleAvatarWithLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 35,
-      backgroundColor: Colors.grey[300],
-      child: ClipOval(
-        child: CachedNetworkImage(
-          placeholder: (context, url) => const Stack(
-            children: [
-              CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.red)),
-              Image(image: AssetImage('assets/pokeball.png')),
-            ],
+    return Hero(
+      tag: 'pokemon_image_$imageUrl',
+      child: CircleAvatar(
+        radius: 35,
+        backgroundColor: Colors.grey[300],
+        child: ClipOval(
+          child: CachedNetworkImage(
+            placeholder: (context, url) => const Stack(
+              children: [
+                CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.red)),
+                Image(image: AssetImage('assets/pokeball.png')),
+              ],
+            ),
+            imageUrl: imageUrl,
+            fit: BoxFit.cover,
+            fadeInDuration: const Duration(milliseconds: 200),
+            fadeOutDuration: const Duration(milliseconds: 200),
           ),
-          imageUrl: imageUrl,
-          fit: BoxFit.cover,
-          fadeInDuration: const Duration(milliseconds: 200),
-          fadeOutDuration: const Duration(milliseconds: 200),
         ),
       ),
     );

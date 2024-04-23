@@ -18,8 +18,6 @@ class WidgetsText extends StatelessWidget {
       child: Text(
         text,
         textAlign: textAlign,
-        // style: Theme.of(context).textTheme.bodyLarge,
-        // style: Config.styles.text,
       ),
     );
   }

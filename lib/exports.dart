@@ -17,10 +17,7 @@ export 'constants/colors_constant.dart';
 // Models:
 
 // Packages:
-export 'package:phone_input_formatter/exports.dart';
 export 'package:toast/exports.dart';
-export 'package:widgets/exports.dart';
-
 export 'package:flutter/foundation.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,7 +28,7 @@ export 'package:pokemon/helpers/response_model.dart';
 export 'package:pokemon/models/pokemon_home_model.dart';
 export 'package:pokemon/services/api/home_get.dart';
 export 'package:pokemon/services/viewmodels/home_viewmodel.dart';
-export 'package:pokemon/views/pokemon_screen.dart';
+export 'package:pokemon/views/pokemon/pokemon_screen.dart';
 export 'package:pokemon/widgets/alert_widget.dart';
 export 'package:pokemon/widgets/avatar_widget.dart';
 export 'package:pokemon/widgets/button_widget.dart';
@@ -45,7 +42,7 @@ export 'package:pokemon/models/pokemon_home_item_model.dart';
 
 export 'package:pokemon/cubits/pokemon_cubit.dart';
 export 'package:pokemon/cubits/theme_cubit.dart';
-export 'package:pokemon/views/home_screen.dart';
+export 'package:pokemon/views/home/home_screen.dart';
 export 'package:pokemon/models/pokemon_model.dart';
 export 'package:pokemon/helpers/dio.dart';
 
