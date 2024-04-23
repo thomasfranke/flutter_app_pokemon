@@ -42,12 +42,12 @@ class WidgetsAlert extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: ConstantsDesign.paddingHorizontal, vertical: ConstantsDesign.paddingVertical),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
           child: Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: colorBack,
-              borderRadius: BorderRadius.circular(ConstantsDesign.radius),
+              borderRadius: BorderRadius.circular(8.0),
               border: Border.all(color: colorBorder, width: 2),
             ),
             child: Wrap(

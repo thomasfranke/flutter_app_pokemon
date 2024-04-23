@@ -9,7 +9,7 @@ class CircleAvatarWithLoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: 20,
+      radius: 35,
       backgroundColor: Colors.grey[300],
       child: ClipOval(
         child: CachedNetworkImage(
@@ -21,8 +21,6 @@ class CircleAvatarWithLoadingIndicator extends StatelessWidget {
           ),
           imageUrl: imageUrl,
           fit: BoxFit.cover,
-          width: 80,
-          height: 80,
           fadeInDuration: const Duration(milliseconds: 200),
           fadeOutDuration: const Duration(milliseconds: 200),
         ),

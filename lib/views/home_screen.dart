@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import '/exports.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,35 +23,55 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _body() {
-    return BlocBuilder<PokemonHomeCubit, PokemonHomeModel>(builder: (context, pokemonHome) {
-      return ListView.builder(
-        itemCount: pokemonHome.results.length + 1,
-        itemBuilder: (context, index) {
-          if (index < pokemonHome.results.length) {
-            final pokemon = pokemonHome.results[index];
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                leading: CircleAvatarWithLoadingIndicator(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
-                title: Text(pokemon.name, style: const TextStyle(color: Colors.amber)),
-                subtitle: Text(pokemon.url, style: const TextStyle(color: Colors.amber)),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(pokemonName: pokemon.name))),
-              ),
-            );
-          } else {
-            _apiData = _apiGet.get();
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      );
-    });
+    return ListView.builder(
+      itemCount: _viewModel.getResults().length + 1,
+      itemBuilder: (context, index) {
+        log('Size: ${_viewModel.getResults().length}');
+        if (index < _viewModel.getResults().length) {
+          final PokemonHomeItem pokemon = _viewModel.getResults()[index];
+          return _listTile(pokemon: pokemon, index: index);
+        } else {
+          _apiData = _apiGet.get(url: _viewModel.getNext());
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+
+  Widget _listTile({required PokemonHomeItem pokemon, required int index}) {
+    return Bounceable(
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(pokemonName: pokemon.name))),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            color: const Color(0xFF281b1b),
+          ),
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              CircleAvatarWithLoadingIndicator(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
+              const SizedBox(width: 30),
+              Text(pokemon.name.toUpperCase()[0] + pokemon.name.substring(1),
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                  )),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return WidgetsScaffold(
-      title: "PokeGuide",
+      title: "assets/logo.png",
+      hasTitleImage: true,
       hasDrawer: true,
       body: WidgetsFutureBuilder(
         future: _apiData,

@@ -15,8 +15,6 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    log('• Welcome to PokeGuide');
-
     Bloc.observer = const AppObserver();
     return MultiBlocProvider(
       providers: [
@@ -30,7 +28,6 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: navigatorKey,
             theme: modelTheme ? darkTheme : lightTheme,
             debugShowCheckedModeBanner: false,
-            title: "PokeGuide",
             home: const HomeScreen(),
           );
         },

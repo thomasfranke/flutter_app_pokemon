@@ -3,18 +3,16 @@ import '/exports.dart';
 
 class WidgetsScaffold extends StatelessWidget {
   final String title;
+  final IconButton action;
   final Widget body;
   final bool hasAppBar;
   final bool hasNavBar;
   final bool hasDrawer;
+  final bool hasTitleImage;
   final Widget? bottomNavigationBar;
   final Color backgroundColor;
-  final FloatingActionButton fab;
-  final bool hasFab;
   const WidgetsScaffold({
     super.key,
-    this.fab = const FloatingActionButton(onPressed: null, child: Icon(Icons.add)),
-    this.hasFab = false,
     required this.body,
     this.title = "",
     this.bottomNavigationBar,
@@ -22,6 +20,8 @@ class WidgetsScaffold extends StatelessWidget {
     this.hasAppBar = true,
     this.hasDrawer = false,
     this.backgroundColor = const Color(0xff1e1f20),
+    this.hasTitleImage = false,
+    this.action = const IconButton(icon: Icon(Icons.add), onPressed: null),
   });
 
   @override
@@ -30,7 +30,8 @@ class WidgetsScaffold extends StatelessWidget {
         ? AppBar(
             iconTheme: const IconThemeData(color: ConstantsColors.primary),
             backgroundColor: ConstantsColors.background,
-            title: WidgetsTitle(text: title, appBar: true),
+            title: hasTitleImage ? Center(child: Image.asset(title, fit: BoxFit.fitWidth, height: 50)) : WidgetsTitle(text: title),
+            actions: [action],
           )
         : null;
 
@@ -44,7 +45,6 @@ class WidgetsScaffold extends StatelessWidget {
         bottom: false,
         child: body,
       ),
-      floatingActionButton: hasFab ? fab : null,
       bottomNavigationBar: hasNavBar ? bottomNavigationBar : null,
     );
   }
