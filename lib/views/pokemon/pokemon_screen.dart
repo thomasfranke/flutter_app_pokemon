@@ -25,7 +25,7 @@ class _PokemonScreenState extends State<PokemonScreen> {
   void initState() {
     super.initState();
     _viewModel = PokemonViewModel(pokemonCubit: BlocProvider.of<PokemonCubit>(context));
-    _apiGet = PokemonApiGet(pokemonCubit: BlocProvider.of<PokemonCubit>(context), fToast: FToast());
+    _apiGet = PokemonApiGet(pokemonCubit: BlocProvider.of<PokemonCubit>(context));
     _apiData = _apiGet.get(pokemonName: widget.pokemonName);
   }
 

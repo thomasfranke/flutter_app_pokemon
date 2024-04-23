@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon/constants/colors_constant.dart';
 
 class TitleWidget extends StatelessWidget {
   final String text;
@@ -17,7 +18,7 @@ class TitleWidget extends StatelessWidget {
       style: const TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        color: Colors.red,
+        color: ConstantsColors.primary,
       ),
     );
   }

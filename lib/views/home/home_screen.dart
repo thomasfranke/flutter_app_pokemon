@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _viewModel = PokemonHomeViewModel(pokemonHomeCubit: BlocProvider.of<PokemonHomeCubit>(context));
-    _apiGet = PokemonHomeApiGet(pokemonHomeCubit: BlocProvider.of<PokemonHomeCubit>(context), fToast: FToast());
+    _apiGet = PokemonHomeApiGet(pokemonHomeCubit: BlocProvider.of<PokemonHomeCubit>(context));
     _apiData = _apiGet.get();
   }
 
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(width: 30),
               Text(pokemon.name.toUpperCase()[0] + pokemon.name.substring(1),
                   style: const TextStyle(
-                    color: Colors.red,
+                    color: ConstantsColors.primary,
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                   )),

@@ -27,7 +27,12 @@ class _WidgetsHomeDrawerState extends State<WidgetsHomeDrawer> {
               ),
               child: Bounceable(
                 onTap: () => (),
-                child: const ListTile(leading: Icon(Icons.favorite_border, color: ConstantsColors.primary), title: Text('Rate at the App Store')),
+                child: const ListTile(
+                    leading: Icon(Icons.favorite_border, color: ConstantsColors.primary),
+                    title: Text(
+                      'Rate at the App Store',
+                      style: TextStyle(color: ConstantsColors.white),
+                    )),
               ),
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:pokemon/constants/colors_constant.dart';
 
 class AvatarWidget extends StatelessWidget {
   final String imageUrl;
@@ -17,7 +18,7 @@ class AvatarWidget extends StatelessWidget {
           child: CachedNetworkImage(
             placeholder: (context, url) => const Stack(
               children: [
-                CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.red)),
+                CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ConstantsColors.primary)),
                 Image(image: AssetImage('assets/pokeball.png')),
               ],
             ),

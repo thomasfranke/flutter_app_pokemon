@@ -1,0 +1,7 @@
+flutter_icons: # Run: flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
+  image_path: assets/icon.png
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: assets/icon.png
+  android: true
+  ios: true
+  remove_alpha_ios: true

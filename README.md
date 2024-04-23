@@ -10,20 +10,24 @@ O aplicativo está basicamente dividido em três partes (MVVM):
 - Views: responsável pelo gerenciamento das telas.
 - ViewModel: contém a lógica do sistema, fornecendo dados prontos para as views.
 
-
-A interface gráfica **ainda não foi desenvolvida** devido à falta de tempo. Transformar uma arte pronta, pixel por pixel, em uma tela Flutter não é das tarefas mais difíceis. Portanto, foquei na lógica de programação e na arquitetura MVVM.
+A **interface gráfica e testes unitários ainda não foram desenvolvidos** devido à falta de tempo. Transformar uma arte pronta, pixel por pixel, em uma tela Flutter não é das tarefas mais difíceis, então no momento o app está utilizando uma interface extremamente básica, pois foquei na lógica de programação e na arquitetura MVVM.
 
 Graficamente, adicionei apenas algumas pequenas features que demonstram meu conhecimento:
 - O ícone do Pokémon no Listview Builder, enquanto carrega, mostra um activity indicator e uma Pokébola. É rápido, mas está presente.
-- Utilizei Hero, que proporciona uma transição suave ao abrir a tela do Pokémon.
-- Implementei Toasts, mesmo que desnecessário neste aplicativo, pois é um fork do FToast, onde customizei as animações, estilo e aprimorei a fila.
-- Criei uma NavigationBar: uma simples implementação de uma barra de navegação customizada.
+- NavigationBar: uma simples implementação de uma barra de navegação customizada.
 
 Algumas Widgets/Features customizadas para padronizar o sistema:
 
-- FutureBuilder
 - API
+- FutureBuilder
 - Scaffold
+
+Em breve:
+- Toasts, mesmo que desnecessário neste aplicativo, quero adicionar pois é um package de minha criação. Baseado no FToast, customizei as animações, estilo e aprimorei a fila: https://github.com/thomasfranke/flutter_package_toast
+- Dark Mode / Themes
+- Multi Language
+- Interface Gráfica
+- Splash Screen
 
 ## BLoC vs MobX
 
@@ -54,3 +58,5 @@ Telas (ou páginas) do seu aplicativo. Cada tela do seu aplicativo terá sua pr�
 ### /Widgets
 Widgets reutilizáveis que podem ser usados em várias telas do seu aplicativo. Esses widgets podem incluir botões personalizados, caixas de diálogo, barras de navegação personalizadas e outros componentes de interface do usuário que são usados em todo o aplicativo.
 
+# Wakatime:
+https://wakatime.com/@81ee337c-1e3d-460c-9004-b1ee1d921524/projects/qlhhsekbac?start=2024-04-23&end=2024-04-23
