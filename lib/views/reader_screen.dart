@@ -12,8 +12,8 @@ import 'package:pokemon/widgets/loading_indicator_widget.dart';
 import 'package:pokemon/widgets/scaffold_widget.dart';
 
 class PokemonScreen extends StatefulWidget {
-  final String url;
-  const PokemonScreen({super.key, required this.url});
+  final String name;
+  const PokemonScreen({super.key, required this.name});
 
   @override
   State<PokemonScreen> createState() => _PokemonScreenState();
@@ -31,11 +31,12 @@ class _PokemonScreenState extends State<PokemonScreen> {
   }
 
   Future<ApiModelsResponse> apiGet() {
-    log("GET: ${widget.url}");
-    return ApiRequests().send(endpoint: ApiEndpointModel(get: widget.url), method: ApiMethods.get).then((value) {
+    log("GET: ${widget.name}");
+    return ApiRequests().send(endpoint: ApiEndpointModel(get: "https://pokeapi.co/api/v2/pokemon-species/${widget.name}"), method: ApiMethods.get).then((value) {
       return value;
     }).then((value) {
       if (value.data.isNotEmpty) {
+        inspect(value.data);
         PokemonModel pokemon = PokemonModel.fromJson(value.data);
         BlocProvider.of<PokemonCubit>(context).update(pokemon);
       }

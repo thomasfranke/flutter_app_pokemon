@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/cubits/home_cubit.dart';
+import 'package:pokemon/cubits/pokemon_home_cubit.dart';
 import 'package:pokemon/cubits/pokemon_cubit.dart';
+import 'package:pokemon/cubits/pokemon_list_cubit.dart';
 import 'package:pokemon/cubits/theme_cubit.dart';
 import 'package:pokemon/views/home_screen.dart';
 import 'exports.dart';
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
-        BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
+        BlocProvider<PokemonHomeCubit>(create: (context) => PokemonHomeCubit()),
         BlocProvider<PokemonListCubit>(create: (context) => PokemonListCubit()),
         BlocProvider<PokemonCubit>(create: (context) => PokemonCubit()),
       ],

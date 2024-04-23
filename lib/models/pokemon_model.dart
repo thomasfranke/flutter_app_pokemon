@@ -1,11 +1,13 @@
 class PokemonModel {
-  String name;
+  int baseHappiness;
 
   PokemonModel({
-    required this.name,
+    required this.baseHappiness,
   });
 
-  factory PokemonModel.fromJson(Map<String, dynamic> json) => PokemonModel(
-        name: json["name"].toString(),
-      );
+  factory PokemonModel.fromJson(Map<String, dynamic> json) {
+    return PokemonModel(
+      baseHappiness: json["base_happiness"],
+    );
+  }
 }

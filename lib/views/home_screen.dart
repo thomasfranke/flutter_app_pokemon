@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/cubits/home_cubit.dart';
+import 'package:pokemon/cubits/pokemon_home_cubit.dart';
+import 'package:pokemon/cubits/pokemon_list_cubit.dart';
 import 'package:pokemon/helpers/dio.dart';
 import 'package:pokemon/helpers/endpoint_model.dart';
 import 'package:pokemon/helpers/methods_constant.dart';
@@ -12,7 +13,7 @@ import 'package:pokemon/widgets/avatar_widget.dart';
 import 'package:pokemon/widgets/button_widget.dart';
 import 'package:pokemon/widgets/loading_indicator_widget.dart';
 import 'package:pokemon/widgets/scaffold_widget.dart';
-import '../exports.dart';
+import '/exports.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }).then((value) {
       if (value.data.isNotEmpty) {
         PokemonList pokemon = PokemonList.fromJson(value.data);
-        BlocProvider.of<HomeCubit>(context).update(pokemon);
+        BlocProvider.of<PokemonHomeCubit>(context).update(pokemon);
 
         List<dynamic> results = value.data['results'];
         List<dynamic> pokemonList = results.map((c) => PokemonListItem.fromJson(c)).toList();
@@ -58,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _body() {
-    return BlocBuilder<HomeCubit, PokemonList>(builder: (context, pokemonHome) {
+    return BlocBuilder<PokemonHomeCubit, PokemonList>(builder: (context, pokemonHome) {
       return BlocBuilder<PokemonListCubit, List<dynamic>>(builder: (context, pokemonList) {
         return ListView.builder(
           itemCount: pokemonList.length + 1,
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   leading: CircleAvatarWithLoadingIndicator(imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png"),
                   title: Text(pokemon.name, style: const TextStyle(color: Colors.amber)),
                   subtitle: Text(pokemon.url, style: const TextStyle(color: Colors.amber)),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(url: pokemon.url))),
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokemonScreen(name: pokemon.name))),
                 ),
               );
             } else {
