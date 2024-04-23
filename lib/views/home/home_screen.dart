@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
-import 'package:pokemon/widgets/future_builder_widget.dart';
 import '/exports.dart';
 
 class HomeScreen extends StatefulWidget {

@@ -1,5 +1,4 @@
-import 'package:pokemon/models/pokemon_egg_groups_model.dart';
-import 'package:pokemon/models/pokemon_flavor_text_entries_model.dart';
+import '/exports.dart';
 
 class PokemonModel {
   int baseHappiness;

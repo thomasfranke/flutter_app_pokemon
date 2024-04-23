@@ -1,4 +1,4 @@
-import 'package:pokemon/helpers/methods_constant.dart';
+import '/exports.dart';
 
 class ApiModelsEndpoints {
   final ApiMethods method;

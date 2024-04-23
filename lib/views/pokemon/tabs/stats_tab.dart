@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/widgets/styles_text_widget.dart';
 import '/exports.dart';
 
 class PokemonStatsTab extends StatefulWidget {

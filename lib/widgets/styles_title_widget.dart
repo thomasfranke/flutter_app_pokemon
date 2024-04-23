@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/constants/colors_constant.dart';
+import '/exports.dart';
 
 class TitleWidget extends StatelessWidget {
   final String text;

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
-import 'package:pokemon/views/pokemon/tabs/overview_tab.dart';
-import 'package:pokemon/views/pokemon/tabs/stats_tab.dart';
-import 'package:pokemon/widgets/future_builder_widget.dart';
 import '/exports.dart';
 
 class PokemonScreen extends StatefulWidget {
