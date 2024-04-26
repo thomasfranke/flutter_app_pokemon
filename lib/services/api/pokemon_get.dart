@@ -1,15 +1,30 @@
+import 'package:toast/services/toast_service.dart';
+
 import '/exports.dart';
 
 class PokemonApiGet {
   late final PokemonCubit _pokemonCubit;
+  late final FToast _fToast;
 
-  PokemonApiGet({required PokemonCubit pokemonCubit}) : _pokemonCubit = pokemonCubit;
+  PokemonApiGet({
+    required PokemonCubit pokemonCubit,
+    required FToast fToast,
+  })  : _pokemonCubit = pokemonCubit,
+        _fToast = fToast;
 
   Future<ApiModelsResponse> get({required String pokemonName}) async {
     try {
       final value = await ApiRequests().send(
         endpoint: ApiEndpointModel(get: "https://pokeapi.co/api/v2/pokemon-species/$pokemonName"),
         method: ApiMethods.get,
+      );
+
+      _fToast.showToast(
+        type: FToastType.all,
+        serverStatus: value.serverStatus,
+        responseStatus: value.responseStatus,
+        message: value.responseStatus ? "Pokemon carregado com sucesso" : "Falha ao carregar Pokemon",
+        position: FToastPosition.snackbarTop,
       );
 
       if (value.responseStatus) {

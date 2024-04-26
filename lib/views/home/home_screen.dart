@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:toast/services/toast_service.dart';
 import '/exports.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,7 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _viewModel = PokemonHomeViewModel(pokemonHomeCubit: BlocProvider.of<PokemonHomeCubit>(context));
-    _apiGet = PokemonHomeApiGet(pokemonHomeCubit: BlocProvider.of<PokemonHomeCubit>(context));
+    _apiGet = PokemonHomeApiGet(
+      pokemonHomeCubit: BlocProvider.of<PokemonHomeCubit>(context),
+      fToast: FToast()..init(context),
+    );
     _apiData = _apiGet.get();
   }
 

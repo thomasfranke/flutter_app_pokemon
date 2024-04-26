@@ -21,9 +21,9 @@ dependencies:
   font_awesome_flutter: ^10.6.0
   google_fonts: ^6.1.0
   loading_indicator: ^3.1.0
-  # toast:
-  #   git:
-  #     url: https://github.com/thomasfranke/flutter_package_toast.git
+  toast:
+    git:
+      url: https://github.com/thomasfranke/flutter_package_toast.git
   
 
 dev_dependencies:

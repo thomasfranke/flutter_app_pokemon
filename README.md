@@ -1,5 +1,7 @@
 # PokeGuide
 
+2024/04/26 - v1.0.01: Adifionado FToast
+
 ## Status do Desenvolvimento
 
 O MVVM e o gerenciamento de estado implementados com sucesso. A tela inicial possui rolagem infinita e a página do Pokémon está recebendo dados da API com êxito utilizando a arquitetura MVVM.
@@ -15,6 +17,7 @@ A **interface gráfica e testes unitários ainda não foram desenvolvidos** devi
 Graficamente, adicionei apenas algumas pequenas features que demonstram meu conhecimento:
 - O ícone do Pokémon no Listview Builder, enquanto carrega, mostra um activity indicator e uma Pokébola. É rápido, mas está presente.
 - NavigationBar: uma simples implementação de uma barra de navegação customizada.
+- Toasts, mesmo que desnecessário neste aplicativo, foi adicionado pois o package foi customizado por mim. Baseado no FToast, customizei as animações, estilo e aprimorei a fila. Muito interessante é que ele permanece na tela mesmo se ocorrer transição de telas, o que é importante caso haja fila de toasts. Package: https://github.com/thomasfranke/flutter_package_toast
 
 Algumas Widgets/Features customizadas para padronizar o sistema:
 
@@ -23,7 +26,6 @@ Algumas Widgets/Features customizadas para padronizar o sistema:
 - Scaffold
 
 Em breve:
-- Toasts, mesmo que desnecessário neste aplicativo, quero adicionar pois é um package de minha criação. Baseado no FToast, customizei as animações, estilo e aprimorei a fila: https://github.com/thomasfranke/flutter_package_toast
 - Dark Mode / Themes
 - Multi Idioma
 - Interface Gráfica

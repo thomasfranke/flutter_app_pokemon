@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:toast/exports.dart';
 import '/exports.dart';
 
 class PokemonScreen extends StatefulWidget {
@@ -22,7 +23,10 @@ class _PokemonScreenState extends State<PokemonScreen> {
   void initState() {
     super.initState();
     _viewModel = PokemonViewModel(pokemonCubit: BlocProvider.of<PokemonCubit>(context));
-    _apiGet = PokemonApiGet(pokemonCubit: BlocProvider.of<PokemonCubit>(context));
+    _apiGet = PokemonApiGet(
+      pokemonCubit: BlocProvider.of<PokemonCubit>(context),
+      fToast: FToast()..init(context),
+    );
     _apiData = _apiGet.get(pokemonName: widget.pokemonName);
   }
 

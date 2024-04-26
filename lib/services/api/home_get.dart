@@ -1,16 +1,30 @@
+import 'package:toast/exports.dart';
+
 import '/exports.dart';
 
 class PokemonHomeApiGet {
   late final PokemonHomeCubit _pokemonHomeCubit;
-  // late final FToast _fToast;
+  late final FToast _fToast;
 
-  PokemonHomeApiGet({required PokemonHomeCubit pokemonHomeCubit}) : _pokemonHomeCubit = pokemonHomeCubit;
+  PokemonHomeApiGet({
+    required PokemonHomeCubit pokemonHomeCubit,
+    required FToast fToast,
+  })  : _pokemonHomeCubit = pokemonHomeCubit,
+        _fToast = fToast;
 
   Future<ApiModelsResponse> get({url = "https://pokeapi.co/api/v2/pokemon/"}) async {
     try {
       final value = await ApiRequests().send(
         endpoint: ApiEndpointModel(get: url),
         method: ApiMethods.get,
+      );
+
+      _fToast.showToast(
+        type: FToastType.all,
+        serverStatus: value.serverStatus,
+        responseStatus: value.responseStatus,
+        message: value.responseStatus ? "Lista carregada com sucesso" : "Falha ao carregar lista de Pokemons",
+        position: FToastPosition.snackbarTop,
       );
 
       if (value.responseStatus) {
